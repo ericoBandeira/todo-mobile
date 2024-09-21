@@ -13,6 +13,7 @@ export interface taskListProps {
 
 export default function Home() {
   const [taskList, setTaskList] = useState<taskListProps[]>([]);
+  const [countDone, setCountDone] = useState(0);
 
   function setNewTaskList(newTask: taskListProps) {
     setTaskList((prevState) => [...prevState, newTask]);
@@ -20,6 +21,13 @@ export default function Home() {
 
   function removeTask(task: string) {
     setTaskList((prevState) => prevState.filter((item) => item.body !== task));
+  }
+
+  function addConclude() {
+    setCountDone(countDone + 1);
+  }
+  function removeConclude() {
+    setCountDone(countDone - 1);
   }
 
   return (
@@ -36,7 +44,7 @@ export default function Home() {
         <View style={styles.containerCount}>
           <Text style={styles.concludedTasks}>Concluídas</Text>
           <View style={styles.numberContainer}>
-            <Text style={styles.numberText}>0</Text>
+            <Text style={styles.numberText}>{countDone}</Text>
           </View>
         </View>
       </View>
@@ -45,7 +53,12 @@ export default function Home() {
           data={taskList}
           keyExtractor={(item) => item.key}
           renderItem={({ item }) => (
-            <Task body={item.body} removeTask={removeTask} />
+            <Task
+              body={item.body}
+              removeTask={removeTask}
+              addConclude={addConclude}
+              removeConclude={removeConclude}
+            />
           )}
         />
       ) : (

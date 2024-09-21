@@ -6,12 +6,24 @@ import { Check, Trash } from "phosphor-react-native";
 interface TaskProps {
   body: string;
   removeTask: (task: string) => void;
+  addConclude: () => void;
+  removeConclude: () => void;
 }
 
-export default function Task({ body, removeTask }: TaskProps) {
+export default function Task({
+  body,
+  removeTask,
+  addConclude,
+  removeConclude,
+}: TaskProps) {
   const [done, setDone] = useState(false);
 
   function handleSetDone() {
+    if (done === false) {
+      addConclude();
+    } else {
+      removeConclude();
+    }
     setDone(!done);
   }
 
