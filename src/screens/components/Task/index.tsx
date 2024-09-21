@@ -1,18 +1,44 @@
-import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
-import { Trash } from "phosphor-react-native";
+import { Check, Trash } from "phosphor-react-native";
 
-export default function Task() {
+interface TaskProps {
+  body: string;
+  removeTask: (task: string) => void;
+}
+
+export default function Task({ body, removeTask }: TaskProps) {
+  const [done, setDone] = useState(false);
+
+  function handleSetDone() {
+    setDone(!done);
+  }
+
+  function handleParticipantRemove() {
+    Alert.alert("Remover", `Deseja remover esta task?`, [
+      {
+        text: "Sim",
+        onPress: () => removeTask(body),
+      },
+      {
+        text: "Não",
+        style: "cancel",
+      },
+    ]);
+  }
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.buttonContainer}>
-        <View style={styles.inputRadio} />
-        <Text style={styles.taskText}>
-          Integer urna interdum massa libero auctor neque turpis turpis semper.
+      <TouchableOpacity style={styles.buttonContainer} onPress={handleSetDone}>
+        <View style={done ? styles.inputRadioClicked : styles.inputRadio}>
+          {done && <Check size={12} color="#F2F2F2" weight="bold" />}
+        </View>
+        <Text style={done ? styles.taskTextClicked : styles.taskText}>
+          {body}
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handleParticipantRemove}>
         <Trash size={18} color="#808080" />
       </TouchableOpacity>
     </View>
