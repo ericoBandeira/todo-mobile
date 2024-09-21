@@ -4,6 +4,7 @@ import { styles } from "./styles";
 import Header from "../components/Header";
 import TaskInput from "../components/TaskInput";
 import Empty from "../components/Empty";
+import Task from "../components/Task";
 
 export default function Home() {
   return (
@@ -26,7 +27,8 @@ export default function Home() {
         </View>
       </View>
 
-      <Empty />
+      {/* <Empty /> */}
+      <Task />
     </View>
   );
 }
