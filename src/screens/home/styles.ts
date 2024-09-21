@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 24,
     paddingTop: 32,
+    paddingBottom: 20,
   },
   containerCount: {
     flexDirection: "row",
