@@ -31,7 +31,7 @@ export default function TaskInput({ setNewTaskList }: TaskInputProps) {
         value={task}
       />
       <TouchableOpacity style={styles.containerButton} onPress={handleAddTask}>
-        <PlusCircle size={32} color="#F2F2F2" />
+        <PlusCircle size={24} color="#F2F2F2" />
       </TouchableOpacity>
     </View>
   );
