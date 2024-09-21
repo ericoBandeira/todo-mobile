@@ -9,6 +9,21 @@ export default function Home() {
     <View style={styles.container}>
       <Header />
       <TaskInput />
+
+      <View style={styles.containerTasks}>
+        <View style={styles.containerCount}>
+          <Text style={styles.createdTasks}>Criadas</Text>
+          <View style={styles.numberContainer}>
+            <Text style={styles.numberText}>0</Text>
+          </View>
+        </View>
+        <View style={styles.containerCount}>
+          <Text style={styles.concludedTasks}>Concluídas</Text>
+          <View style={styles.numberContainer}>
+            <Text style={styles.numberText}>0</Text>
+          </View>
+        </View>
+      </View>
     </View>
   );
 }
